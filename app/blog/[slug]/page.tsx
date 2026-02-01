@@ -1,6 +1,5 @@
-import { getPostBySlug, incrementViewCount } from '@/lib/storage';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { getPostBySlug } from '@/lib/storage';
+import Link from 'next/link';import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, Download } from 'lucide-react';
 import { remark } from 'remark';
 import html from 'remark-html';
@@ -31,7 +30,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     }
 
     // Increment view count
-    incrementViewCount(slug);
+    // incrementViewCount(slug);
 
     const contentHtml = await getPostContent(post.content);
 
