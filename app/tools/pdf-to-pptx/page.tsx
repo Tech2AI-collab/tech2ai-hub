@@ -86,6 +86,8 @@ export default function PdfToPptxPage() {
 
                     for (const item of textContent.items) {
                         // @ts-ignore
+                                        // Type guard: check if item has 'str' property
+                                        if (!('str' in item)) continue;
                         if (!item.str || item.str.trim().length === 0) continue;
 
                         // PDF.js transform: [scaleX, skewY, skewX, scaleY, x, y]
