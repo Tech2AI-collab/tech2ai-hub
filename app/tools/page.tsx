@@ -17,7 +17,7 @@ const tools = [
         icon: FileType,
         color: "text-red-500",
         bg: "bg-red-500/10",
-        href: "/tools/pdf-to-pptx"
+        
     },
     {
         name: "Document Converter",
