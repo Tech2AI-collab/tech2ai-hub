@@ -55,6 +55,8 @@ export default function PdfToPptxPage() {
 
             const pptx = new pptxgen();
 
+                // Define mode for PDF to image conversion
+                const mode = 'image';
             for (let i = 1; i <= totalPages; i++) {
                 setStatus(`Processing page ${i} of ${totalPages}...`);
                 const page = await pdf.getPage(i);
