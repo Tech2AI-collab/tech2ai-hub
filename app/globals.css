@@ -107,3 +107,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   transition: color 0.3s, background-color 0.3s;
 }
+
+/* Editor content link styling */
+textarea[name="content"] {
+  /* This won't work for markdown preview, need to style the rendered content */
+}
+
+/* Style links in rendered markdown content */
+.prose a,
+article a {
+  color: #0066cc;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose a:hover,
+article a:hover {
+  color: #0052a3;
+  text-decoration: underline;
+}
