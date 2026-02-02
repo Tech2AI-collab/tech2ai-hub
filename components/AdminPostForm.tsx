@@ -542,11 +542,32 @@ export default function AdminPostForm({ initialData }: AdminPostFormProps) {
                                 <img src={formData.coverImage} alt="Cover" className="w-full h-64 md:h-80 object-cover rounded-xl mb-8" />
                             )}
                             <h1 className="text-3xl md:text-5xl font-black mb-6">{formData.title}</h1>
-                            {formData.youtubeUrl && (
-                                <div className="aspect-video w-full mb-8 bg-black/5 rounded-xl flex items-center justify-center text-muted-foreground">
-                                    [YouTube Video Placeholder]
-                                </div>
-                            )}
+                            {formData.youtubeUrl && (() => {
+          const getYoutubeId = (url: string) => {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+          };
+          const videoId = getYoutubeId(formData.youtubeUrl);
+          
+          return videoId ? (
+            <div className="aspect-video w-full mb-8">
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${videoId}`}
+                title="YouTube video preview"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="border-0 rounded-xl"
+              />
+            </div>
+          ) : (
+            <div className="aspect-video w-full mb-8 bg-black/5 rounded-xl flex items-center justify-center text-muted-foreground">
+              Invalid YouTube URL
+            </div>
+          );
+        })()}
                             <div
                                 className="prose prose-base md:prose-lg dark:prose-invert max-w-none"
                                 dangerouslySetInnerHTML={{ __html: previewHtml }}
